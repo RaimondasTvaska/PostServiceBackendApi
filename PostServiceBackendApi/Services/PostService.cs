@@ -37,7 +37,7 @@ namespace PostServiceBackendApi.Services
         {
             return await _postRepository.GetPostByIdAsync(id);
         }
-        public async Task UpdatePostAsync(Post post)
+        public async Task UpdatePostAsync(int id, Post post)
         {
             var entity = new Post()
             {
@@ -46,7 +46,7 @@ namespace PostServiceBackendApi.Services
                 Capacity = post.Capacity,
                 PostCode = post.PostCode
             };
-            if (post.Id != post.Id)
+            if (id != post.Id)
             {
                 throw new ArgumentException("Post not found");
             }

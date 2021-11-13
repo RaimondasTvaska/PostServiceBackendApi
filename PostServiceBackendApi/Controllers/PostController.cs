@@ -37,9 +37,9 @@ namespace PostServiceBackendApi.Controllers
             return Ok(await _postService.AddPostAsync(post));
         }
         [HttpPut]
-        public async Task<IActionResult> UpdatePost(Post post)
+        public async Task<IActionResult> UpdatePost(int id, Post post)
         {
-            await _postService.UpdatePostAsync(post);
+            await _postService.UpdatePostAsync(id, post);
             return NoContent();
         }
         [HttpDelete("{id}")]

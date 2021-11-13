@@ -10,10 +10,12 @@ namespace PostServiceBackendApi.Services
     public class ParcelService
     {
         private readonly ParcelRepository _parcelRepository;
+        private readonly PostRepository _postRepository;
 
-        public ParcelService(ParcelRepository parcelRepository)
+        public ParcelService(ParcelRepository parcelRepository, PostRepository postRepository)
         {
             _parcelRepository = parcelRepository;
+            _postRepository = postRepository;
         }
         public async Task<int> AddAsync(Parcel parcel)
         {
@@ -25,6 +27,7 @@ namespace PostServiceBackendApi.Services
                 Info = parcel.Info,
                 PostId = parcel.PostId
             };
+
             if (entity.PostId == 0)
             {
                 entity.PostId = null;
@@ -57,7 +60,7 @@ namespace PostServiceBackendApi.Services
                 Info = parcel.Info,
                 PostId = parcel.PostId
             };
-            if (entity == null)
+            if (entity.Id != parcel.Id)
             {
                 throw new ArgumentException("Parcel not found");
             }
